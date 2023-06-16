@@ -139,6 +139,16 @@ var worldTimeAction = {
             let cityName = payload['city'];
             var idx = cityName.indexOf("/") + 1;
             cityNameShort = cityName.substring(idx).replace("_", " ");
+            switch(cityNameShort) {     // fit Standard Timezones on one line, could probably swap to ?DT for daylight time depending on time of year
+                case "EST5EDT":
+                    cityNameShort = "EST/DT";
+                case "CST6CDT":
+                    cityNameShort = "CST/DT";
+                case "MST7MDT":
+                    cityNameShort = "MST/DT";
+                case "PST8PDT":
+                    cityNameShort = "PST/DT";
+            } 
             if (cityNameShort.length > 6) {
                 cityNameShort = cityNameShort.slice(0, 5) + "-\r\n" + cityNameShort.substring(5);
             }
